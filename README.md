@@ -45,7 +45,7 @@ Frequency-to-Voltage: Methods include Phase-Locked Loops (PLL) or Zero Crossing 
 
 Filter Method: The signal is passed through a selective filter to isolate the Mark or Space frequency. This effectively converts the FSK signal into an ASK signal, which is then processed by an envelope detector.
 
-### <b>equipment for the experiment</b>
+### <b>Equipment for the experiment</b>
 * Emona Telecom-Trainer 101 (plus power pack)
 * Dual channel 20Mhz Oscilloscope
 * Three Emona telecom-trainer 101 oscilloscope leads
@@ -109,6 +109,65 @@ Block diagram of the mathematical operation of QPSK
 * <b>Dual Modulation</b>: * The even bits modulate a standard carrier to create a BPSK signal ($PSK_I$).
 * <b>Signal Summation</b>: These two BPSK signals are added together for transmission.
 * <b>Phase Separation</b>: Because the carriers are 90° apart (orthogonal), they do not interfere with each other. This allows the receiver to use phase discrimination to separate and recover both bitstreams perfectly.
+
+<img src="https://github.com/Johnvy-M/COMMS-2-LAB.-Experimental-Analysis-of-Digital-Modulation-and-its-Other-Properties/blob/c21270890f0cc88712badec2d2cb54abd4f42c05/Exp18/1.png" alt="QPSK">
+
+Notice the arrangement uses two product detectors to simultaneously demodulate the two BPSK signals. This simultaneously recovers the pairs of bits in the original data. The two signals are cleaned-up using a comparator or some other signal conditioner then the bits are put back in order using a 2-bit parallel-to-serial converter.
+
+### <b>Equipment for the experiment</b>
+* Emona Telecom-Trainer 101 (plus power pack)
+* Dual channel 20Mhz Oscilloscope
+* Three Emona telecom-trainer 101 oscilloscope leads
+* assorted emona telecom-trainer 101 patch leads
+
+
+<details>
+  <summary><b><i>RESULTS in BPSK Experiment</i></b></summary>
+
+  <img src="https://github.com/Johnvy-M/COMMS-2-LAB.-Experimental-Analysis-of-Digital-Modulation-and-its-Other-Properties/blob/c21270890f0cc88712badec2d2cb54abd4f42c05/Exp%2017/PART-A-fig2.png" alt="BPSK">
+ 
+  <i>Generated BPSK signal</i>
+
+  <img src="https://github.com/Johnvy-M/COMMS-2-LAB.-Experimental-Analysis-of-Digital-Modulation-and-its-Other-Properties/blob/c21270890f0cc88712badec2d2cb54abd4f42c05/Exp%2017/PART-B-fig4.png" alt="BPSK">
+  
+  <i>Demodulated BPSK using product detector</i>
+  
+ 
+  <img src="https://github.com/Johnvy-M/COMMS-2-LAB.-Experimental-Analysis-of-Digital-Modulation-and-its-Other-Properties/blob/c21270890f0cc88712badec2d2cb54abd4f42c05/Exp%2017/PART-C-fig6.png" alt="BPSK">
+  
+  <i>Restored data using comparator</i>
+
+</details>
+
+  <details>
+  <summary><b><i>RESULTS in QPSK Experiment</i></b></summary>
+
+  [Outputs for the Experiment 18 (QPSK)](https://github.com/Johnvy-M/COMMS-2-LAB.-Experimental-Analysis-of-Digital-Modulation-and-its-Other-Properties/blob/23b2a2632ae30dc67587ce62ce4eab9db9635b93/Exp18/Exp18.COMS2.pdf)
+
+
+## III - <b>DSSS Modulation & Demodulation</b>
+Direct Sequence Spread Spectrum (DSSS) is a variation of Double Sideband Suppressed Carrier (DSBSC) modulation. Instead of a single sinusoidal carrier, DSSS utilizes a Pseudo-Noise (PN) pulse train. Since a pulse train consists of a fundamental frequency and infinite harmonics, the DSSS signal effectively represents the simultaneous DSBSC modulation of multiple sinusoidal carriers. This results in the message energy being distributed across a vast number of low-power sidebands.
+The wide distribution of signal energy provides a significant advantage in anti-jamming. Because the information is spread across numerous sidebands, an interferer would need to disrupt a substantial portion of the total bandwidth to successfully jam the signal. This "processing gain" makes DSSS highly resilient to narrowband interference.
+
+### Demodulation 
+Demodulation is achieved via a product detector. For successful recovery of the original message, the receiver’s local carrier must be an identical, perfectly synchronized PN sequence (matching in frequency, phase, and timing).
+* <b>Success</b>: If synchronized, the individual sidebands add constructively to reproduce the message.
+* Failure: Without exact synchronization, the components add destructively, resulting in a low-power "noise-like" signal.
+
+### Security and code complexity 
+DSSS provides inherent "effective encryption" because the signal cannot be despread without the correct PN sequence. Security is scaled by increasing the length of the sequence (measured in chips).
+* 8-bit sequence: 255-256 combinations.
+* 20-bit sequence: ~1 million combinations.
+* 256-bit sequence: Over $1.15 \times 10^{77}$ combinations.
+
+This exponential increase in complexity makes "trial and error" or brute-force decryption computationally infeasible for longer sequences.
+
+
+
+
+
+
+
 
 
 
